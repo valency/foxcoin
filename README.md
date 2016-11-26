@@ -14,10 +14,6 @@ All the current implementations of blockchains are tightly coupled with the larg
 * No proof-of-work or proof-of-stake: a block can be added to the blockchain without competition
 
 
-![alt tag](naivechain_blockchain.png)
-
-![alt tag](naivechain_components.png)
-
 ### Quick start
 (set up two connected nodes and mine 1 block)
 ```

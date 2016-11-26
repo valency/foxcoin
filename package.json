@@ -1,7 +1,8 @@
 {
-  "name": "naivechain",
+  "name": "foxcoin",
   "version": "1.0.0",
   "description": "",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "node main.js"
   },
@@ -13,5 +14,9 @@
   },
   "engines": {
     "node": ">=4.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valency/foxcoin.git"
   }
 }
