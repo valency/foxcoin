@@ -5,6 +5,15 @@ let Express = require("express");
 let BodyParser = require('body-parser');
 let WebSocket = require("ws");
 
+
+let calculate_hashForBlock = (block) => {
+    return calculate_hash(block.index, block.prev_hash, block.timestamp, block.data);
+};
+
+let calculate_hash = (index, prev_hash, timestamp, data) => {
+    return CryptoJS.SHA256(index + prev_hash + timestamp + JSON.stringify(data)).toString();
+};
+
 // Configurations
 
 let MESSAGE_TYPE = {
@@ -40,7 +49,7 @@ let GENESIS_BLOCK = () => {
 class Block {
     constructor(index, prev_hash, timestamp, data, hash) {
         this.index = index;
-        this.prev_hash = prev_hash.toString();
+        this.prev_hash = prev_hash ? prev_hash.toString() : null;
         this.timestamp = timestamp;
         this.data = data;
         this.hash = hash.toString();
@@ -133,14 +142,6 @@ let generateNextBlock = (blockData) => {
     return new Block(nextIndex, previousBlock.hash, nextTimestamp, blockData, nextHash);
 };
 
-
-let calculate_hashForBlock = (block) => {
-    return calculate_hash(block.index, block.prev_hash, block.timestamp, block.data);
-};
-
-let calculate_hash = (index, prev_hash, timestamp, data) => {
-    return CryptoJS.SHA256(index + prev_hash + timestamp + JSON.stringify(data)).toString();
-};
 
 let addBlock = (newBlock) => {
     if (isValidNewBlock(newBlock, getLatestBlock())) {
